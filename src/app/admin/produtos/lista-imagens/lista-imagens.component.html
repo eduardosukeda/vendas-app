@@ -1,0 +1,18 @@
+<p-orderList [value]="imagens" [listStyle]="{'height':'auto'}" header="Mais Imagens" filterBy="ordem" filterPlaceholder="Filter by name" dragdrop="true" (onReorder)="reordenarLista()">
+    <ng-template let-imagem pTemplate="item">
+        <div class="product-item">
+            <div class="image-container">
+                    <img src="data:image/jpg;base64,{{imagem.imagem}}" [alt]="imagem.ordem" class="product-image" />
+            </div>
+            <div class="product-list-detail">
+                Produto: 
+                <span class="product-category">{{imagem.produto.nome}}</span>
+            </div>
+            <div class="product-list-action">
+                <h6 class="p-mb-2">Ordem: {{imagem.ordem}}</h6>
+            </div>
+        </div>
+    </ng-template>
+</p-orderList>
+
+<button type="button" (click)="fecharDialog()" pButton icon="pi pi-info-circle" label="Salvar ordem"></button>

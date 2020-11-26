@@ -1,0 +1,163 @@
+<h1 class="mt-4">Produtos</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Nome</label>
+                <input formControlName="nome" type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Descrição</label>
+                <input formControlName="descricao" type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Peso (Kg)</label>
+                <input formControlName="peso" type="number" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+              <label>Preço: (R$)*</label>
+              <input formControlName="preco" type="number" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group d-flex flex-column">
+                <label>Promoção: </label>
+                <p-toggleButton formControlName="promocao" onLabel="Sim" offLabel="Não" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}"></p-toggleButton>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group d-flex flex-column">
+              <label>Mais Vendidos: </label>
+              <p-toggleButton formControlName="maisVendidos" onLabel="Sim" offLabel="Não" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}"></p-toggleButton>
+          </div>
+      </div>
+    </div>   
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Qtd mínima (Kg)</label>
+                <input formControlName="quantidadeMinimaVenda" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+              <label>Qtd estoque: *</label>
+              <input formControlName="quantidadeEstoque" type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>Categoria</label>
+                <select class="form-control" formControlName="categoria">
+                    <option value="">Selecione...</option> 
+                    <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+                        {{categoria.nome}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="row">
+     
+      <div class="col-md-6">
+        <div class="form-group"> 
+          <label>Imagem Principal: </label>
+          <input formControlName="imagemPrincipal" type="file" (change)="uploadImagemPrincipal($event)" class="form-control" />
+        </div>
+      </div>
+
+  
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Demais Imagens: </label>
+          <input formControlName="maisImagens" type="file" (change)="uploadMaisImagens($event)" class="form-control" multiple/>
+        </div>
+      </div>
+    </div>
+
+ 
+ <!--
+    <div class="row">
+      <div class="col-md-6">
+        <label>Imagem Principal: </label>
+        <p-fileUpload name="imagemPrincipal" url="" (change)="uploadImagemPrincipal($event)"
+            accept="image/*" maxFileSize="1000000">
+              <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                      <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                  </ul>
+              </ng-template>
+        </p-fileUpload>
+      </div>
+
+      <div class="col-md-6">
+        <label>Demais Imagens: </label>
+        <p-fileUpload name="maisImagens" url="" (change)="uploadMaisImagens($event)"
+              multiple="multiple" accept="image/*" maxFileSize="1000000">
+              <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                      <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                  </ul>
+              </ng-template>
+        </p-fileUpload>
+      </div>
+  </div>
+
+   -->
+
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" [disabled]="!form.valid" class="btn btn-success" *ngIf="!id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+    <br>
+  </form>
+
+  <p>{{nome}}</p>
+  <p>{{promocao}}</p>
+  <p>{{maisVendidos}}</p>
+
+</div>
+
+
+
+
+
+
+

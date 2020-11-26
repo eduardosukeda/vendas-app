@@ -1,0 +1,103 @@
+<h1 class="mt-4">Produtos</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 mb-4">
+            <button class="btn btn-warning" (click)="novoCadatro()">
+                <i class="fa fa-plus"></i> Cadastrar novo
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+             <p-table [value]="produtos">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3%">ID</th>
+                        <th>Imagem Principal</th>
+                        <th>Demais imagens</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th style="width: 8%">Preço</th>
+                        <th style="width: 5%">Peso</th>
+                        <th style="width: 5%">Qtd mínima</th>
+                        <th style="width: 5%">Promo</th>
+                        <th style="width: 5%">Mais vend</th>
+                        <th>Data Cadastro</th>
+                        <th>Ações</th>
+                    </tr>
+                </ng-template>
+                
+                <ng-template pTemplate="body" let-produto>
+                    <tr>
+                        <td>{{produto.id}}</td>
+                        <td>
+                            <div *ngIf="produto.imagens">
+                                <img width="50" height="50"
+                                     src="data:image/jpg;base64,{{ produto.imagens[0].imagem }}" (click)="abrirDetalhesImagem(produto.imagens[0])"/>
+                                
+                            </div>
+                            <div *ngIf="!produto.imagens">
+                                <img width="50" height="50"
+                                src="../../../../assets/imgs/no-image.png" />    
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-info" (click)="mostrarListaImagens(produto)"><i class="far fa-images"></i></button>
+                        </td>
+                        <td>{{produto.nome}}</td>
+                        <td class="descricao-limite" pTooltip={{produto.descricao}} tooltipPosition="bottom" placeholder="Bottom">{{produto.descricao}}</td>
+                        <td>{{produto.categoria.nome}}</td>
+                        <td>{{produto.preco}}</td>
+                        <td>{{produto.peso}}</td>
+                        <td>{{produto.quantidadeMinimaVenda}}</td>
+                        <td>{{produto.promocao}}</td>
+                        <td>{{produto.maisVendidos}}</td>
+                        <td>{{produto.dataCriacao | date:"dd/MM/yyyy"}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" routerLink="/produtos/form/{{produto.id}}">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+    
+                                <button class="btn btn-danger ml-1" (click)="preparaDelecao(produto)"
+                                        data-toggle="modal" data-target="#modalDelecao">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                           
+                        </td>
+                    </tr>
+                </ng-template>
+                
+            </p-table>
+        </div>
+    </div>
+
+    <!--Modal de deleção-->
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+                <div class="modal-body" *ngIf="produtoSelecionado">
+                    Confirma a deleção do produto <b>{{produtoSelecionado.nome}}</b>?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deletarProduto()" data-dismiss="modal">Confirma</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancela</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,110 @@
+<h1 class="mt-4">Funcionarios</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Usuário</label>
+                <select formControlName="usuario" class="form-control selectpicker" data-live-search="true">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let usuario of usuarios" [ngValue]="usuario">
+                        {{usuario.nome}} - Login: {{usuario.login}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Departamento</label>
+                <select class="form-control" formControlName="departamento">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let departamento of departamentos" [ngValue]="departamento">
+                        {{departamento.nome}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+              <label>Função: *</label>
+              <input formControlName="funcao" type="text" class="form-control" />
+            </div>
+          </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Endereço</label>
+                <select class="form-control" formControlName="endereco">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let endereco of enderecos" [ngValue]="endereco">
+                        Rua: {{endereco.rua}}, nº: {{endereco.numero}}, {{endereco.bairro}} - 
+                        {{endereco.cidade}} / {{endereco.estado}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <!-- Foto -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Foto: </label>
+          <input formControlName="foto" type="file" (change)="uploadFoto($event)" class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Usuário: </label>
+            <p-dropdown autoWidth="true" [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}" [options]="usuarios" [(ngModel)]="usuarioSelecionado" optionLabel="nome" [filter]="true" [showClear]="true" placeholder="Selecione um usuário">
+                <ng-template pTemplate="selectedItem" >
+                    <div class="country-item country-item-value"  *ngIf="usuarioSelecionado">
+                        <div>{{usuarioSelecionado.nome}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-usuario pTemplate="item">
+                    <div class="country-item ">
+                        <div>{{usuario.value.nome}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" [disabled]="!form.valid" class="btn btn-success" *ngIf="!id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+
+
+
+
+

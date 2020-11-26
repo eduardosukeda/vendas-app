@@ -1,0 +1,137 @@
+<div class="plano-fundo">
+    <div id="layoutAuthentication">
+      <div id="layoutAuthentication_content">
+        <main>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                  <div class="card-header">
+                    <img src="../../../assets/imgs/cearapescados1.jpeg" class="img-fluid" alt="Imagem responsiva">
+                      <h3 class="text-center font-weight-light my-4">
+                        {{ cadastrando ? 'Cadastro de Novo Usuário' : ''}}
+                      </h3>
+                  </div>
+
+                  <div class="card-body">
+                      <div class="alert alert-danger" *ngIf="loginErro">
+                        Login e/ou Senha incorreto(a).
+                      </div>
+                      <form #loginForm="ngForm" (submit)="onSubmit()">
+
+                          <div class="form-group" *ngIf="cadastrando">
+                            <label class="small mb-1">Nome</label>
+                            <input type="text" name="nome"
+                                    [(ngModel)]="nome" 
+                                    class="form-control py-4"
+                                    placeholder="Digite seu nome" />
+                          </div>
+
+                          <div class="form-group" *ngIf="cadastrando">
+                            <label class="small mb-1">E-mail</label>
+                            <input type="email" name="email"
+                                    [(ngModel)]="email" 
+                                    class="form-control py-4"
+                                    placeholder="Digite seu e-mail" />
+                          </div>
+
+                          <div class="form-group" *ngIf="cadastrando">
+                            <label class="small mb-1">Telefone</label>
+                            <input type="text" name="telefone"
+                                    [(ngModel)]="telefone" 
+                                    class="form-control py-4"
+                                    placeholder="Digite seu telefone" />
+                          </div>
+
+                          <div class="form-group">
+                            <label class="small mb-1">Login</label>
+                            <input type="text" name="login"
+                                    [(ngModel)]="login" 
+                                    class="form-control py-4"
+                                    placeholder="Digite seu login" />
+                          </div>
+
+                          <div class="form-group">
+                            <label class="small mb-1">Senha</label>
+                            <input type="password" name="senha"
+                                    [(ngModel)]="senha" 
+                                    class="form-control py-4"
+                                    placeholder="Digite sua senha" />
+                          </div>
+
+                          <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <button type="submit" class="btn btn-primary" *ngIf="!cadastrando">
+                              Enviar
+                            </button>
+
+                            <button type="button" (click)="cadastrarUsuario()" class="btn btn-success" *ngIf="cadastrando">
+                              Cadastrar
+                            </button>
+
+                            <button type="button" (click)="cancelaCadastro()"
+                                    class="btn btn-danger ml-2" *ngIf="cadastrando">
+                              Cancelar
+                            </button>
+                          </div>
+                      </form>
+                  </div>
+                  
+                  <div class="card-footer text-center" *ngIf="!cadastrando">
+                    <div class="small">
+                      <a href="#" (click)="preparaCadastrar($event)">
+                        Não possui Usuário? Cadastre-se!
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+</div>
+
+<!--
+<div *ngIf="isLoggedIn; else loggedOut">
+</div>
+ 
+<ng-template #loggedOut>
+  <div class="central" style="max-width:450px; background-color: rgba(211, 211, 211, 0.4);">
+    <div class="cadastro-area">
+      <img src="../../../../assets/imgs/camarao-desenhopng.jfif" class="imagem" alt="...">
+      <h5 style="text-align: center; padding-top: 10px;">Ponto do Camarão - administração</h5>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="text" class="form-control input-borda" name="email" [(ngModel)]="form.email" #email="ngModel"
+            required />
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" class="form-control input-borda" name="senha" [(ngModel)]="form.senha" #senha="ngModel"
+            required minlength="6" />
+          <div *ngIf="f.submitted && senha.invalid">
+            <div *ngIf="senha.errors.required">Senha is required</div>
+            <div *ngIf="senha.errors.minlength">Senha must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Login</button>
+          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+            Login falhou: {{errorMessage}}
+          </div>
+        </div>
+      </form>
+      <hr />
+      <p>Não tem uma conta?</p>
+      <a routerLink="/cadastro" class="btn btn-success">Sign Up</a>
+    </div>
+  </div>
+</ng-template>
+-->

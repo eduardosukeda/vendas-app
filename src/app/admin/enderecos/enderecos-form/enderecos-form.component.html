@@ -1,0 +1,147 @@
+<h1 class="mt-4">Endereços</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="row">
+
+        <!-- Rua -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Rua: *</label>
+          <input formControlName="rua" type="text" class="form-control" />
+        </div>
+        <div *ngIf="form.controls.rua.errors">
+          <div *ngIf="form.controls.rua.errors.required">
+            A rua é obrigatória
+          </div>
+        </div>
+      </div>
+
+      <!-- Número -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Número: *</label>
+          <input formControlName="numero" type="text" class="form-control" />
+        </div>
+        <div *ngIf="form.controls.numero.errors">
+          <div *ngIf="form.controls.numero.errors.required">
+            O numero é obrigatório
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <!-- CEP -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CEP: *</label>
+          <input formControlName="cep" type="text" class="form-control" />
+        </div>
+        <div *ngIf="form.controls.cep.errors">
+          <div *ngIf="form.controls.cep.errors.required">
+            O CEP é obrigatório
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <!-- Cidade -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Cidade: *</label>
+          <input formControlName="cidade" type="text" class="form-control" />
+        </div>
+        <div *ngIf="form.controls.cidade.errors">
+          <div *ngIf="form.controls.cidade.errors.required">
+            A cidade é obrigatória
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Estado: *</label>
+          <input formControlName="estado" type="text" class="form-control" />
+        </div>
+        <div *ngIf="form.controls.estado.errors">
+          <div *ngIf="form.controls.estado.errors.required">
+            O estado é obrigatório
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+        <!-- Bairro -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Bairro: *</label>
+          <input formControlName="bairro" type="text" class="form-control" />
+        </div>
+        <div *ngIf="form.controls.bairro.errors">
+          <div *ngIf="form.controls.bairro.errors.required">
+            O bairro é obrigatório
+          </div>
+        </div>
+      </div>    
+
+        <!-- Complemento -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Complemento: </label>
+          <input formControlName="complemento" type="text" class="form-control" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+         <!-- Ponto de referência -->
+        <div class="col-md-6">
+            <div class="form-group">
+            <label>Ponto de referência: </label>
+            <input formControlName="pontoReferencia" type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Observação -->
+       <div class="col-md-6">
+           <div class="form-group">
+           <label>Observação: </label>
+           <input formControlName="observacao" type="text" class="form-control" />
+           </div>
+       </div>
+   </div>   
+
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" [disabled]="!form.valid" class="btn btn-success" *ngIf="!id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+

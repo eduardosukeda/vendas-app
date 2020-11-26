@@ -1,0 +1,50 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+
+                <div class="sb-sidenav-menu-heading">Sistema</div>
+                    <a class="nav-link"routerLink="/login">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Administração
+                    </a>
+
+                <div class="sb-sidenav-menu-heading">Cadastros</div>
+                    <a class="nav-link" routerLink="/categorias">
+                        <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                        Categorias
+                    </a>
+                    
+                    <a class="nav-link" routerLink="/departamentos">
+                        <div class="sb-nav-link-icon"><i class="fas fa-sitemap"></i></div>
+                        Departamentos
+                    </a> 
+
+                    <a class="nav-link" routerLink="/enderecos">
+                        <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                        Endereços
+                    </a>
+
+                    <a class="nav-link" routerLink="/funcionarios">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
+                        Funcionarios
+                    </a>
+
+                    <a class="nav-link" routerLink="/produtos">
+                        <div class="sb-nav-link-icon"><i class="fas fa-fish"></i></div>
+                        Produtos
+                    </a>
+
+                <div class="sb-sidenav-menu-heading">Logout</div>
+                    <a class="nav-link link" (click)="logout();">
+                        <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        Sair
+                    </a>              
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            {{usuarioLogado}}
+        </div>
+    </nav>
+</div>

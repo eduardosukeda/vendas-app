@@ -1,0 +1,53 @@
+<h1 class="mt-4">Departamentos</h1>
+
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+
+<div class="container-fluid">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Nome -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+          <label>Nome: *</label>
+          <input id="nome" formControlName="nome" type="text" class="form-control" placeholder="Nome" >
+          <app-erro-msg [control]="form.get('nome')" label="Nome"></app-erro-msg>
+        </div>
+      </div>
+
+      <!-- Telefone -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Telefone: </label>
+          <input formControlName="telefone" type="text" class="form-control" mask="(00) 00000-0000"/>
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success" *ngIf="!id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+

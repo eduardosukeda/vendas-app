@@ -1,0 +1,84 @@
+<h1 class="mt-4">Funcionarios</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 mb-4">
+            <button class="btn btn-warning" (click)="novoCadatro()">
+                <i class="fa fa-plus"></i> Novo
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Departamento</th>
+                        <th>Função</th>
+                        <th>Data Cadastro</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let funcionario of funcionarios">
+                        <td>
+                            <div *ngIf="funcionario.foto">
+                                <img width="50" height="50"
+                                     src="data:image/jpg;base64,{{ funcionario.foto }}" />
+                            </div>
+                            <div *ngIf="!funcionario.foto">
+                                <img width="50" height="50"
+                                src="../../../../assets/imgs/no-image.png" />    
+                            </div>
+                        </td>
+                        <td>{{funcionario.id}}</td>
+                        <td>{{funcionario.usuario.nome}}</td>
+                        <td>{{funcionario.usuario.telefone}}</td>
+                        <td>{{funcionario.departamento.nome}}</td>
+                        <td>{{funcionario.funcao}}</td>
+                        <td>{{funcionario.dataCriacao}}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/funcionarios/form/{{funcionario.id}}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(funcionario)"
+                                    data-toggle="modal" data-target="#modalDelecao">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+
+    <!--Modal de deleção-->
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+                <div class="modal-body" *ngIf="funcionarioSelecionado">
+                    Confirma a deleção do funcionario <b>{{funcionarioSelecionado.usuario.nome}}</b>?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deletarFuncionario()" data-dismiss="modal">Confirma</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancela</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
